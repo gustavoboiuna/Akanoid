@@ -1,11 +1,14 @@
+local Player = require('./lib/Player')
+
 function love.load()
-  love.window.setTitle("Arkanoid")
+  player = Player:new()
 end
 
-function love.update()
-  
+function love.update(dt)
+  player:update()
+
 end
 
 function love.draw()
-  
+    player:draw()
 end
