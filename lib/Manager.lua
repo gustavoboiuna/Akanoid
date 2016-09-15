@@ -1,5 +1,6 @@
 local Player = require('./lib/Player')
 local Block = require('./lib/Block')
+local Ball = require('./lib/Ball')
 
 -- Define the manager's attributes
 local Manager = {

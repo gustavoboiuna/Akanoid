@@ -11,4 +11,5 @@ end
 
 function love.draw()
 	manager:draw()
+	love.graphics.circle("fill", 400, 400, 8, 100)
 end

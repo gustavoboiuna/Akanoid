@@ -18,7 +18,7 @@ end
 
 -- Spawn the player at the correct position
 function Player:place()
-	x = (love.graphics.getWidth() - Player.width) / 2
+	x = love.graphics.getWidth() / 2
 	y = love.graphics.getHeight() - Player.height - 5
 
 	return x, y
