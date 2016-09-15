@@ -3,7 +3,7 @@ local Block = {
 	width = 95,
 	height = 15,
 	col = 0,
-	color = {255, 255, 255}
+	color = {255, 255, 255},
 }
 
 -- Create the block object
@@ -21,7 +21,7 @@ end
 -- Draw the block
 function Block:draw()
 	love.graphics.setColor(self.color)
-	love.graphics.quad('fill', 
+	love.graphics.polygon('fill', 
 		self.x - Block.width/2, self.y - Block.height/2,
 		self.x + Block.width/2, self.y - Block.height/2,
 		self.x + Block.width/2, self.y + Block.height/2,

@@ -5,6 +5,7 @@ local Ball = require('./lib/Ball')
 -- Define the manager's attributes
 local Manager = {
 	player = Player:new(),
+  ball = Ball:new(),
 	blocks = {}
 }
 
@@ -24,22 +25,33 @@ function Manager:load()
 			Manager.blocks[10 * i + j] = Block:new(i * 100 + 100, j * 20 + 75, i)
 		end
 	end
+  
+  Manager.ball:place()
 end
 
 -- Update the player
 function Manager:update(dt)
 	Manager.player:update(dt)
-
+  Manager.ball:update(dt)
+  
+  Manager.ball:checkCollision(Manager.player)
+  
+  for i, block in ipairs(Manager.blocks) do
+  	if Manager.ball:checkCollision(block) then
+      table.remove(Manager.blocks, i)
+    end
+  end
 end
 
 -- Draw the player and the blocks
 function Manager:draw()
 	Manager.player:draw()
 
-	for i = 0, 69 do
-		Manager.blocks[i]:draw()
+	for i = 0, table.getn(Manager.blocks) do
+    Manager.blocks[i]:draw()
 	end
-
+  
+  Manager.ball:draw()
 	love.graphics.setColor({255, 255, 255})
 end
 

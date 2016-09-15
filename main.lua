@@ -1,6 +1,7 @@
 local Manager = require('./lib/Manager')
 
 function love.load()
+  love.window.setTitle("Arkanoid")
 	manager = Manager:new()
 	manager:load()
 end
@@ -11,5 +12,4 @@ end
 
 function love.draw()
 	manager:draw()
-	love.graphics.circle("fill", 400, 400, 8, 100)
 end

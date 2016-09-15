@@ -2,7 +2,7 @@
 local Player = {
 	width = 70,
 	height = 10,
-	moveIncrement = 400
+	moveIncrement = 400,
 }
 
 -- Create the player object
@@ -53,7 +53,7 @@ end
 function Player:draw()
 	love.graphics.setColor(255, 0, 0)
 
-	love.graphics.quad('fill', 
+	love.graphics.polygon('fill', 
 		self.x - Player.width/2, self.y - Player.height/2,
 		self.x + Player.width/2, self.y - Player.height/2,
 		self.x + Player.width/2, self.y + Player.height/2,
