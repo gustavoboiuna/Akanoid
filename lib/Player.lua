@@ -2,7 +2,7 @@
 local Player = {
 	width = 70,
 	height = 10,
-	moveIncrement = 10
+	moveIncrement = 400
 }
 
 -- Create the player object
@@ -25,27 +25,27 @@ function Player:place()
 end
 
 -- Movement handling
-function Player:update()
+function Player:update(dt)
 	if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
-		self:moveRight()
+		self:moveRight(dt)
 	else
 		if love.keyboard.isDown('left') or love.keyboard.isDown('a') then
-			self:moveLeft()
+			self:moveLeft(dt)
 		end
 	end
 end
 
 -- Translate the player to the left if the player is not out of bounds
-function Player:moveLeft()
-	if self.x - Player.moveIncrement >= 0 + Player.width/2 + 10 then
-		self.x = self.x - Player.moveIncrement
+function Player:moveLeft(dt)
+	if self.x - Player.moveIncrement/40 >= 0 + Player.width/2 + 10 then
+		self.x = self.x - Player.moveIncrement * dt
 	end
 end
 
 -- Translate the player to the right if the player is not out of bounds
-function Player:moveRight()
-	if self.x + Player.moveIncrement <= love.graphics.getWidth() - Player.width/2 - 10 then
-		self.x = self.x + Player.moveIncrement
+function Player:moveRight(dt)
+	if self.x + Player.moveIncrement/40 <= love.graphics.getWidth() - Player.width/2 - 10 then
+		self.x = self.x + Player.moveIncrement * dt
 	end
 end
 

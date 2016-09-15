@@ -26,8 +26,8 @@ function Manager:load()
 end
 
 -- Update the player
-function Manager:update()
-	Manager.player:update()
+function Manager:update(dt)
+	Manager.player:update(dt)
 
 end
 

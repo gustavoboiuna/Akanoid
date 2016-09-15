@@ -6,7 +6,7 @@ function love.load()
 end
 
 function love.update(dt)
-	manager:update()
+	manager:update(dt)
 end
 
 function love.draw()
