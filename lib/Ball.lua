@@ -38,14 +38,14 @@ function Ball:draw()
 end
 
 function Ball:checkCollision(object)
-  if((self.x + self.radius) > object.x and 
-    (self.x - self.radius) < (object.x + object.width) and
-    (self.y + self.radius) > object.y and
-    (self.y - self.radius) < (object.y + object.height)) then
+  if((self.x + self.radius) > (object.x - object.width/2) and 
+     (self.x - self.radius) < (object.x + object.width/2) and
+     (self.y + self.radius) > (object.y - object.height/2) and
+     (self.y - self.radius) < (object.y + object.height/2)) then
       Ball:changeDirection()
       return true
   end
-  
+
   return false
 end
 

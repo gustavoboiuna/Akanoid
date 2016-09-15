@@ -25,7 +25,7 @@ function Manager:load()
 			Manager.blocks[10 * i + j] = Block:new(i * 100 + 100, j * 20 + 75, i)
 		end
 	end
-  
+
   Manager.ball:place()
 end
 
@@ -48,10 +48,10 @@ function Manager:draw()
 	Manager.player:draw()
 
 	for i = 0, table.getn(Manager.blocks) do
-    Manager.blocks[i]:draw()
+		Manager.blocks[i]:draw()
 	end
   
-  Manager.ball:draw()
+	Manager.ball:draw()
 	love.graphics.setColor({255, 255, 255})
 end
 
