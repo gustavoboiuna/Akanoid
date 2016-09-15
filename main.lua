@@ -1,14 +1,14 @@
-local Player = require('./lib/Player')
-local Block = require('./lib/Block')
+local Manager = require('./lib/Manager')
 
 function love.load()
-	player = Player:new()
+	manager = Manager:new()
+	manager:load()
 end
 
 function love.update(dt)
-	player:update()
+	manager:update()
 end
 
 function love.draw()
-	player:draw()
+	manager:draw()
 end
