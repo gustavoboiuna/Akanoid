@@ -2,7 +2,7 @@
 local Player = {
 	width = 70,
 	height = 10,
-	moveIncrement = 400,
+	moveIncrement = 500,
 }
 
 -- Create the player object

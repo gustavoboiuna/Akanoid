@@ -30,7 +30,7 @@ function Ball:update(dt)
   self.y = self.y - (self.direction[2] * self.moveIncrement * dt)
   self.x = self.x + (self.direction[1] * self.moveIncrement * dt)
   
-  if self.x >= (love.graphics.getWidth() - self.radius) or self.x <= 0 then
+  if self.x >= (love.graphics.getWidth() - self.radius) or self.x <= (0 + self.radius) then
     self.direction[1] = self.direction[1] * -1
   end
   
@@ -63,11 +63,11 @@ end
 
 function Ball:changeDirection(x, width)
   self.direction[2] = self.direction[2] * -1
-  division = width/3
+  division = width/2
   
-  if self.x > (x + division/2) then
+  if self.x > x  then
     self.direction[1] = 1
-  elseif self.x >= (x - division/2) then
+  elseif self.x >= (x - division) then
     self.direction[1] = -1
   end
 end
