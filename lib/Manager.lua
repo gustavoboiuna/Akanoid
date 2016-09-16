@@ -6,7 +6,8 @@ local Ball = require('./lib/Ball')
 local Manager = {
 	player = Player:new(),
   ball = Ball:new(),
-	blocks = {}
+	blocks = {},
+  score
 }
 
 -- Create the manager object
@@ -27,9 +28,10 @@ function Manager:load()
 	end
 
   Manager.ball:place()
+  Manager.score = 0
 end
 
--- Update the player
+-- Update
 function Manager:update(dt)
 	Manager.player:update(dt)
   Manager.ball:update(dt)
@@ -39,6 +41,7 @@ function Manager:update(dt)
   for i, block in ipairs(Manager.blocks) do
   	if Manager.ball:checkCollision(block) then
       table.remove(Manager.blocks, i)
+      Manager.score = Manager.score + 50
     end
   end
 end
@@ -53,6 +56,7 @@ function Manager:draw()
   
 	Manager.ball:draw()
 	love.graphics.setColor({255, 255, 255})
+  love.graphics.print("Score: "..Manager.score, 10, 10)
 end
 
 return Manager

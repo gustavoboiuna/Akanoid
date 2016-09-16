@@ -27,8 +27,8 @@ end
 
 -- Update the ball
 function Ball:update(dt)
-  self.y = self.y - (Ball.direction[2] * Ball.moveIncrement * dt)
-  self.x = self.x - (Ball.direction[1] * Ball.moveIncrement * dt)
+  self.y = self.y - (self.direction[2] * self.moveIncrement * dt)
+  self.x = self.x - (self.direction[1] * self.moveIncrement * dt)
 end
 
 -- Draw the ball
@@ -38,19 +38,28 @@ function Ball:draw()
 end
 
 function Ball:checkCollision(object)
-  if((self.x + self.radius) > (object.x - object.width/2) and 
+  if (self.x + self.radius) > (object.x - object.width/2) and 
      (self.x - self.radius) < (object.x + object.width/2) and
      (self.y + self.radius) > (object.y - object.height/2) and
-     (self.y - self.radius) < (object.y + object.height/2)) then
-      Ball:changeDirection()
+     (self.y - self.radius) < (object.y + object.height/2) then
+      self:changeDirection(object.x, object.width)
       return true
   end
 
   return false
 end
 
-function Ball:changeDirection()
-  Ball.direction[2] = Ball.direction[2] * -1
+function Ball:changeDirection(x, width)
+  self.direction[2] = self.direction[2] * -1
+  division = width/3
+  
+  if self.x > (x + division/2) then
+    Ball.direction[1] = -1
+  elseif self.x > (x - division/2) then
+    Ball.direction[1] = 0
+  else
+    Ball.direction[1] = 1
+  end
 end
 
 return Ball
