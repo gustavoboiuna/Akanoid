@@ -67,9 +67,7 @@ function Ball:changeDirection(x, width)
   
   if self.x > (x + division/2) then
     self.direction[1] = 1
-  elseif self.x > (x - division/2) then
-    self.direction[1] = 0
-  else
+  elseif self.x >= (x - division/2) then
     self.direction[1] = -1
   end
 end
