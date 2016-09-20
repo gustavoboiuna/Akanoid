@@ -27,7 +27,8 @@ function Manager:load()
 		end
 	end
 
-  Manager.ball:place()
+  Manager.ball.x, Manager.ball.y = Manager.ball:place()
+  Manager.player.x, Manager.player.y = Manager.player.place()
   Manager.score = 0
 end
 
@@ -43,6 +44,10 @@ function Manager:update(dt)
       table.remove(Manager.blocks, i)
       Manager.score = Manager.score + 50
     end
+  end
+  
+  if Manager.ball.y >= love.graphics.getHeight() then
+    Manager.load()
   end
 end
 

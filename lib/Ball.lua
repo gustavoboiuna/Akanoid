@@ -21,6 +21,7 @@ function Ball:place()
 	x = love.graphics.getWidth() / 2
 	y = love.graphics.getHeight() * 2/3
   Ball.direction[2] = -1
+  Ball.direction[1] = 0
   
 	return x, y
 end
