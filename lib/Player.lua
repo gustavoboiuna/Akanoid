@@ -48,10 +48,6 @@ function Player:moveRight(dt)
 		self.x = self.x + Player.moveIncrement * dt
 	end
 end
--- Nome: variável x
--- Propriedade: valor
--- Binding time: run
--- Explicação: Como "x" é uma variável que é alterada de acordo com a entrada do teclado dada pelo usuário, seu valor só será determinado em tempo de execução.
 
 -- Draw the player
 function Player:draw()
