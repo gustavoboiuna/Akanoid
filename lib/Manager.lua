@@ -15,7 +15,7 @@ function Manager:new()
 	object = {}
 	setmetatable(object, self)
 	self.__index = self
-
+  
 	return object
 end
 
@@ -26,7 +26,7 @@ function Manager:load()
 			Manager.blocks[10 * i + j] = Block:new(i * 100 + 100, j * 20 + 75, i)
 		end
 	end
-
+  
   Manager.ball.x, Manager.ball.y = Manager.ball:place()
   Manager.player.x, Manager.player.y = Manager.player.place()
   Manager.score = 0

@@ -38,6 +38,12 @@ function Ball:update(dt)
   if self.y <= (0 + self.radius) then
     self.direction[2] = -1
   end
+  -- Nome: comando if
+  -- Propriedade: sintaxe
+  -- Binding time: design
+  -- Explicação: A estrutura "if" em Lua teve sua sintaxe definida em tempo de design. 
+  -- Por conta disso ela deve ser escrita de uma forma específica seguindo regras previamente definidas. 
+  -- Um exemplo de como isso afeta a escrita da linguagem é como em Lua se abre um bloco de instruções usando "then" e se fecha com "end". Em C, por exemplo, se abre com "{" e se fecha com "}".
   
   if self.y >= love.graphics.getHeight() then
     --MORREU
