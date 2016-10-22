@@ -1,5 +1,5 @@
 local Manager = require('./lib/Manager')
-
+--io.stdout:setvbuf("no")
 function love.load()
   love.window.setTitle("Arkanoid")
 	manager = Manager:new()

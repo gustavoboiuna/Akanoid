@@ -41,8 +41,14 @@ function Manager:update(dt)
   
   for i, block in ipairs(Manager.blocks) do
   	if Manager.ball:checkCollision(block) then
-      table.remove(Manager.blocks, i)
+      block.remove = true
       Manager.score = Manager.score + 50
+    end
+  end
+  
+  for i, block in ipairs(Manager.blocks) do
+    if(block.remove == true) then
+      table.remove(Manager.blocks, i)
     end
   end
   

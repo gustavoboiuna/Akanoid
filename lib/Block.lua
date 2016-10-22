@@ -4,6 +4,7 @@ local Block = {
 	height = 15,
 	col = 0,
 	color = {255, 255, 255},
+  remove = false
 }
 
 -- Create the block object
