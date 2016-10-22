@@ -5,7 +5,7 @@ local Ball = {
 	direction = {0, 0}
 }
 -- trabalho-06
--- Ball é usado como registro
+-- Ball.direction é usado como tupla
 
 -- Create the ball object
 function Ball:new()

@@ -6,6 +6,8 @@ local Block = {
 	color = {255, 255, 255},
   remove = false
 }
+-- trabalho-06
+-- Block é usado como registro
 
 -- Create the block object
 function Block:new(x, y, col)

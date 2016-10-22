@@ -25,6 +25,8 @@ function Player:place()
 end
 
 -- Movement handling
+-- trabalho-06
+-- o argumento "KeyConstant" que é passado na função "isDown", é usado como enumeração
 function Player:update(dt)
 	if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
 		self:moveRight(dt)
