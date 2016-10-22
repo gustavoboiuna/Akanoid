@@ -9,6 +9,8 @@ local Manager = {
 	blocks = {},
   score
 }
+-- trabalho-06
+-- blocks é usado como array
 
 -- Create the manager object
 function Manager:new()

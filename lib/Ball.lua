@@ -4,6 +4,8 @@ local Ball = {
 	moveIncrement = 300,
 	direction = {0, 0}
 }
+-- trabalho-06
+-- Ball é usado como registro
 
 -- Create the ball object
 function Ball:new()
