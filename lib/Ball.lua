@@ -1,7 +1,7 @@
 -- Define the ball's attributes
 local Ball = {
 	radius = 10,
-	moveIncrement = 300,
+	moveIncrement = 320,
 	direction = {0, 0}
 }
 -- trabalho-06
@@ -39,10 +39,6 @@ function Ball:update(dt)
   
   if self.y <= (0 + self.radius) then
     self.direction[2] = -1
-  end
-  
-  if self.y >= love.graphics.getHeight() then
-    --MORREU
   end
 end
 

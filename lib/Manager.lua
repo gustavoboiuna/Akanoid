@@ -1,6 +1,27 @@
 local Player = require('./lib/Player')
 local Block = require('./lib/Block')
 local Ball = require('./lib/Ball')
+--[[local Text = function(textX, textY, textContent)
+  local x = textX
+  local y = textY
+  local content = textContent
+  
+  return
+  {
+    getXY = function()
+      return x,y
+    end
+    
+    setXY = function(textX, textY)
+      x = textX
+      y = textY
+    end
+  
+    setText = function(textContent)
+      content = textContent
+    end 
+  }
+end]]--
 
 -- Define the manager's attributes
 local Manager = {
@@ -25,7 +46,7 @@ end
 function Manager:load()
 	for i = 0, 6 do
 		for j = 0, 9 do
-			Manager.blocks[10 * i + j] = Block:new(i * 100 + 100, j * 20 + 75, i)
+			Manager.blocks[(10 * i + j) + 1] = Block:new(i * 100 + 100, j * 20 + 75, i)
 		end
 	end
   
@@ -63,7 +84,7 @@ end
 function Manager:draw()
 	Manager.player:draw()
 
-	for i = 0, table.getn(Manager.blocks) do
+	for i = 1, table.getn(Manager.blocks) do
 		Manager.blocks[i]:draw()
 	end
   
