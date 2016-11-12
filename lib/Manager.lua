@@ -1,96 +1,63 @@
-local Player = require('./lib/Player')
-local Block = require('./lib/Block')
-local Ball = require('./lib/Ball')
---[[local Text = function(textX, textY, textContent)
-  local x = textX
-  local y = textY
-  local content = textContent
-  
-  return
-  {
-    getXY = function()
-      return x,y
-    end
-    
-    setXY = function(textX, textY)
-      x = textX
-      y = textY
-    end
-  
-    setText = function(textContent)
-      content = textContent
-    end 
-  }
-end]]--
+local Player = require('Player')
+local Block = require('Block')
+local Ball = require('Ball')
 
--- Define the manager's attributes
-local Manager = {
-	player = Player:new(),
-  ball = Ball:new(),
-	blocks = {},
-  score
-}
--- trabalho-06
--- Manager.blocks é usado como array
+-- trabalho-07
+Manager = {}
 
--- Create the manager object
-function Manager:new()
-	object = {}
-	setmetatable(object, self)
-	self.__index = self
-  
-	return object
-end
+-- Create the Manager object
+function Manager.new()
+	local self = {}
 
--- Initialize the array of blocks
-function Manager:load()
-	for i = 0, 6 do
-		for j = 0, 9 do
-			Manager.blocks[(10 * i + j) + 1] = Block:new(i * 100 + 100, j * 20 + 75, i)
+	-- Private member variables
+	local player = Player.new()
+	local ball = Ball.new()
+	local blocks = {}
+	local score = 0
+
+	-- Public methods
+	function self.load()
+		-- Initialize the scene.
+		for i = 0, 6 do
+			for j = 0, 9 do
+				blocks[(10 * i + j) + 1] = Block.new(i * 100 + 100, j * 20 + 75, i)
+			end
 		end
+
+		player.place()
+		ball.place()
+		score = 0
 	end
-  
-  Manager.ball.x, Manager.ball.y = Manager.ball:place()
-  Manager.player.x, Manager.player.y = Manager.player.place()
-  Manager.score = 0
-end
 
--- Update
-function Manager:update(dt)
-	Manager.player:update(dt)
-  Manager.ball:update(dt)
-  
-  Manager.ball:checkCollision(Manager.player)
-  
-  for i, block in ipairs(Manager.blocks) do
-  	if Manager.ball:checkCollision(block) then
-      block.remove = true
-      Manager.score = Manager.score + 50
-    end
-  end
-  
-  for i, block in ipairs(Manager.blocks) do
-    if(block.remove == true) then
-      table.remove(Manager.blocks, i)
-    end
-  end
-  
-  if Manager.ball.y >= love.graphics.getHeight() then
-    Manager.load()
-  end
-end
+	function self.update(dt)
+		-- Update the scene.
+		player.update(dt)
+		ball.update(dt)
 
--- Draw the player and the blocks
-function Manager:draw()
-	Manager.player:draw()
+		ball.checkCollision(player)
 
-	for i = 1, table.getn(Manager.blocks) do
-		Manager.blocks[i]:draw()
+		for i, block in ipairs(blocks) do
+			if ball.checkCollision(block) then
+				table.remove(blocks, i)
+				score = score + 50
+			end
+		end
+
+		if ball.y >= love.graphics.getHeight() then load() end
+	
 	end
-  
-	Manager.ball:draw()
-	love.graphics.setColor({255, 255, 255})
-  love.graphics.print("Score: "..Manager.score, 10, 10)
+
+	function self.draw()
+		-- Draw the scene.
+		player.draw()
+		ball.draw()
+
+		for i = 1, table.getn(blocks) do blocks[i].draw() end
+
+		love.graphics.setColor({255, 255, 255})
+		love.graphics.print("Score: " .. score, 10, 10)
+	end
+
+	return self
 end
 
-return Manager

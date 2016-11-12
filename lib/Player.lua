@@ -1,65 +1,54 @@
--- Define the player's attributes
-local Player = {
-	width = 70,
-	height = 10,
-	moveIncrement = 500,
-}
+-- trabalho-07
+Player = {}
 
--- Create the player object
-function Player:new()
-	object = {}
-	setmetatable(object, self)
-	self.__index = self
+-- Create the Player object
+function Player.new()
+	local self = {}
 
-	object.x, object.y = Player.place()
+	-- Private member variables
+	local x = love.graphics.getWidth() / 2
+	local y = love.graphics.getHeight() - 5
+	local width = 70
+	local height = 10
+	local moveIncrement = 500
 
-	return object
-end
+	-- Public methods
+	function self.place()
+		x = love.graphics.getWidth() / 2
+		y = love.graphics.getHeight() - 5
+	end
 
--- Spawn the player at the correct position
-function Player:place()
-	x = love.graphics.getWidth() / 2
-	y = love.graphics.getHeight() - Player.height - 5
-
-	return x, y
-end
-
--- Movement handling
--- trabalho-06
--- o argumento "KeyConstant" que é passado na função "isDown", é usado como enumeração
-function Player:update(dt)
-	if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
-		self:moveRight(dt)
-	else
-		if love.keyboard.isDown('left') or love.keyboard.isDown('a') then
-			self:moveLeft(dt)
+	function self.update(dt)
+		-- Movement handling
+		if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
+			moveRight(dt)
+		elseif love.keyboard.isDown('left') or love.keyboard.isDown('a') then
+			moveLeft(dt)
 		end
 	end
-end
 
--- Translate the player to the left if the player is not out of bounds
-function Player:moveLeft(dt)
-	if self.x - Player.moveIncrement/40 >= 0 + Player.width/2 + 10 then
-		self.x = self.x - Player.moveIncrement * dt
+	function self.draw()
+		-- Render the Player object.
+		love.graphics.setColor(255, 0, 0)
+
+		love.graphics.polygon('fill',
+			x - width/2, y - height/2,
+			x + width/2, y - height/2,
+			x + width/2, y + height/2,
+			x - width/2, y + height/2)
 	end
-end
 
--- Translate the player to the right if the player is not out of bounds
-function Player:moveRight(dt)
-	if self.x + Player.moveIncrement/40 <= love.graphics.getWidth() - Player.width/2 - 10 then
-		self.x = self.x + Player.moveIncrement * dt
+	-- Private methods
+	local function moveLeft(dt)
+		-- Move left if not out of bounds.
+		if x - moveIncrement/40 >= 0 + width/2 + 10 then x = x - moveIncrement * dt end
 	end
+
+	local function moveRight(dt)
+		-- Move right if not out of bounds.
+		if x + moveIncrement/40 <= love.graphics.getWidth() - width/2 - 10 then x = x + moveIncrement * dt end
+	end
+
+	return self
 end
 
--- Draw the player
-function Player:draw()
-	love.graphics.setColor(255, 0, 0)
-
-	love.graphics.polygon('fill', 
-		self.x - Player.width/2, self.y - Player.height/2,
-		self.x + Player.width/2, self.y - Player.height/2,
-		self.x + Player.width/2, self.y + Player.height/2,
-		self.x - Player.width/2, self.y + Player.height/2)
-end
-
-return Player
