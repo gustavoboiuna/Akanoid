@@ -11,7 +11,7 @@ function Manager.new()
 	-- Private member variables
 	local player = Player.new()
 	local ball = Ball.new()
-  local specialBlock = SpecialBlock.new(0, 20, love.graphics.getWidth(), 40)
+  local specialBlock = SpecialBlock.new(0, 20, love.graphics.getWidth(), love.graphics.getHeight()/2)
 	local blocks = {}
 	local score = 0
 

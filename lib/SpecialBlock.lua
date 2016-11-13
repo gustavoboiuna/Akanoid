@@ -14,9 +14,9 @@ function SpecialBlock.new(xPos, yPos, limitX, limitY)
 	self.width = 95
 	self.height = 15
   
-  self.iniX = xPos + self.width/2 + 10
+  self.iniX = xPos + self.width/2
   self.iniY = yPos
-  self.limitX = limitX - self.width/2 - 10
+  self.limitX = limitX - self.width/2
   self.limitY = limitY
   
 	-- Public methods
@@ -28,15 +28,19 @@ function SpecialBlock.new(xPos, yPos, limitX, limitY)
       if (phase == 0) then 
         while (self.x < self.limitX) do coroutine.yield('right') end
         phase = 1
+        self.width, self.height = self.height, self.width
       elseif (phase == 1) then
         while (self.y < self.limitY) do coroutine.yield('down') end
         phase = 2
+        self.width, self.height = self.height, self.width
       elseif (phase == 2) then
         while (self.x > self.iniX) do coroutine.yield('left') end
         phase = 3
+        self.width, self.height = self.height, self.width
       else
         while (self.y > self.iniY) do coroutine.yield('up') end
         phase = 0
+        self.width, self.height = self.height, self.width
       end
     end
 	end
