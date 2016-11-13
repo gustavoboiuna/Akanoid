@@ -1,7 +1,7 @@
 local Player = require('lib.Player')
 local Block = require('lib.Block')
 local Ball = require('lib.Ball')
-
+local SpecialBlock = require('lib.SpecialBlock')
 Manager = {}
 
 -- Create the Manager object
@@ -11,6 +11,7 @@ function Manager.new()
 	-- Private member variables
 	local player = Player.new()
 	local ball = Ball.new()
+  local specialBlock = SpecialBlock.new(0, 20, love.graphics.getWidth(), 40)
 	local blocks = {}
 	local score = 0
 
@@ -32,9 +33,11 @@ function Manager.new()
 		-- Update the scene.
 		player.update(dt)
 		ball.update(dt)
-
+    specialBlock.update(dt)
+    
 		ball.checkCollision(player)
-
+    ball.checkCollision(specialBlock)
+    
     for i, block in ipairs(blocks) do
       if ball.checkCollision(block) then
         block.remove = true
@@ -55,7 +58,8 @@ function Manager.new()
 		-- Draw the scene.
 		player.draw()
 		ball.draw()
-
+    specialBlock.draw()
+    
 		for i = 1, table.getn(blocks) do blocks[i].draw() end
 
 		love.graphics.setColor({255, 255, 255})

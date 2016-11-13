@@ -1,31 +1,31 @@
 -- trabalho-07
 Player = {}
 
--- Private member variables
-local self = {}
-local moveIncrement = 500
-
--- Private methods
-local function moveLeft(dt)
-  -- Move left if not out of bounds.
-  if self.x - moveIncrement/40 >= 0 + self.width/2 + 10 then self.x = self.x - moveIncrement * dt end
-end
-
-local function moveRight(dt)
-  -- Move right if not out of bounds.
-  if self.x + moveIncrement/40 <= love.graphics.getWidth() - self.width/2 - 10 then self.x = self.x + moveIncrement * dt end
-end
-
 -- Create the Player object
 -- trabalho-07 - Closure
 -- Player.new é uma closure que encapsula em seu ambiente as variáveis self e as funções moveLeft e moveRight
 function Player.new()
-  
+	local self = {}
+
+	-- Private member variables
+	local moveIncrement = 500
+
 	-- Public member variables
 	self.width = 70
 	self.height = 10
 	self.x = love.graphics.getWidth() / 2
 	self.y = love.graphics.getHeight() - 5
+
+	-- Private methods
+	local function moveLeft(dt)
+		-- Move left if not out of bounds.
+		if self.x - moveIncrement/40 >= 0 + self.width/2 + 10 then self.x = self.x - moveIncrement * dt end
+	end
+
+	local function moveRight(dt)
+		-- Move right if not out of bounds.
+		if self.x + moveIncrement/40 <= love.graphics.getWidth() - self.width/2 - 10 then self.x = self.x + moveIncrement * dt end
+	end
 
 	-- Public methods
 	function self.place()

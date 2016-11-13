@@ -39,7 +39,7 @@ function Ball.new()
 		self.y = self.y - (direction.y * moveIncrement * dt)
 		self.x = self.x + (direction.x * moveIncrement * dt)
 	
-		if self.x >= (love.graphics.getWidth() - radius) or self.x <= (0 + radius) then
+		if self.x >= (love.graphics.getWidth() - radius) or self.x <= (radius) then
 			direction.x = direction.x * -1
 		end
 	
