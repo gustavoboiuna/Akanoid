@@ -9,7 +9,7 @@ function Manager.new()
 	local self = {}
 
 	-- Private member variables
-	local player = Player.new()()
+	local player = Player.new()
 	local ball = Ball.new()
 	local blocks = {}
 	local score = 0
