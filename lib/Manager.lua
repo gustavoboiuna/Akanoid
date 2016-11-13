@@ -2,7 +2,6 @@ local Player = require('lib.Player')
 local Block = require('lib.Block')
 local Ball = require('lib.Ball')
 
--- trabalho-07
 Manager = {}
 
 -- Create the Manager object
@@ -10,7 +9,7 @@ function Manager.new()
 	local self = {}
 
 	-- Private member variables
-	local player = Player.new()
+	local player = Player.new()()
 	local ball = Ball.new()
 	local blocks = {}
 	local score = 0

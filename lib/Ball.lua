@@ -1,4 +1,3 @@
--- trabalho-07
 Ball = {}
 
 -- Create the Ball object

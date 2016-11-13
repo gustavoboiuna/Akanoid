@@ -1,4 +1,3 @@
--- trabalho-07
 Block = {}
 
 -- Create the Block object
