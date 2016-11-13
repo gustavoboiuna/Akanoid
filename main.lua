@@ -1,7 +1,7 @@
-local Manager = require('./lib/Manager')
+local Manager = require('lib.Manager')
 
 function love.load()
-	love.window.setTitle("Arkanoid")
+	--love.window.setTitle("Arkanoid")
 	manager = Manager.new()
 	manager.load()
 end

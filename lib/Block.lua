@@ -6,21 +6,14 @@ function Block.new(xPos, yPos, col)
 	local self = {}
 
 	-- Private member variables
-	local x = xPos
-	local y = yPos
 	local column = col
 	local color = {255, 255, 255}
 
-	-- Public methods
-	function self.draw()
-		-- Render the Block object.
-		love.graphics.setColor(color)
-		love.graphics.polygon('fill', 
-			x - width/2, y - height/2,
-			x + width/2, y - height/2,
-			x + width/2, y + height/2,
-			x - width/2, y + height/2)
-	end
+	-- Public member variables
+	self.x = xPos
+	self.y = yPos
+	self.width = 95
+	self.height = 15
 
 	-- Private methods
 	local function setColor()
@@ -35,7 +28,20 @@ function Block.new(xPos, yPos, col)
 		elseif column < 0 or column > 6 then color = {255, 0, 255} end -- white
 	end
 
+	-- Public methods
+	function self.draw()
+		-- Render the Block object.
+		love.graphics.setColor(color)
+		love.graphics.polygon('fill', 
+			self.x - self.width/2, self.y - self.height/2,
+			self.x + self.width/2, self.y - self.height/2,
+			self.x + self.width/2, self.y + self.height/2,
+			self.x - self.width/2, self.y + self.height/2)
+	end
+
 	setColor()
 
 	return self
 end
+
+return Block

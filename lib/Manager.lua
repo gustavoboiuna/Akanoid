@@ -1,6 +1,6 @@
-local Player = require('Player')
-local Block = require('Block')
-local Ball = require('Ball')
+local Player = require('lib.Player')
+local Block = require('lib.Block')
+local Ball = require('lib.Ball')
 
 -- trabalho-07
 Manager = {}
@@ -43,7 +43,7 @@ function Manager.new()
 			end
 		end
 
-		if ball.y >= love.graphics.getHeight() then load() end
+		if ball.y >= love.graphics.getHeight() then self.load() end
 	
 	end
 
@@ -61,3 +61,4 @@ function Manager.new()
 	return self
 end
 
+return Manager

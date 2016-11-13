@@ -6,16 +6,29 @@ function Player.new()
 	local self = {}
 
 	-- Private member variables
-	local x = love.graphics.getWidth() / 2
-	local y = love.graphics.getHeight() - 5
-	local width = 70
-	local height = 10
 	local moveIncrement = 500
+
+	-- Public member variables
+	self.width = 70
+	self.height = 10
+	self.x = love.graphics.getWidth() / 2
+	self.y = love.graphics.getHeight() - 5
+
+	-- Private methods
+	local function moveLeft(dt)
+		-- Move left if not out of bounds.
+		if self.x - moveIncrement/40 >= 0 + self.width/2 + 10 then self.x = self.x - moveIncrement * dt end
+	end
+
+	local function moveRight(dt)
+		-- Move right if not out of bounds.
+		if self.x + moveIncrement/40 <= love.graphics.getWidth() - self.width/2 - 10 then self.x = self.x + moveIncrement * dt end
+	end
 
 	-- Public methods
 	function self.place()
-		x = love.graphics.getWidth() / 2
-		y = love.graphics.getHeight() - 5
+		self.x = love.graphics.getWidth() / 2
+		self.y = love.graphics.getHeight() - 5
 	end
 
 	function self.update(dt)
@@ -32,23 +45,13 @@ function Player.new()
 		love.graphics.setColor(255, 0, 0)
 
 		love.graphics.polygon('fill',
-			x - width/2, y - height/2,
-			x + width/2, y - height/2,
-			x + width/2, y + height/2,
-			x - width/2, y + height/2)
-	end
-
-	-- Private methods
-	local function moveLeft(dt)
-		-- Move left if not out of bounds.
-		if x - moveIncrement/40 >= 0 + width/2 + 10 then x = x - moveIncrement * dt end
-	end
-
-	local function moveRight(dt)
-		-- Move right if not out of bounds.
-		if x + moveIncrement/40 <= love.graphics.getWidth() - width/2 - 10 then x = x + moveIncrement * dt end
+			self.x - self.width/2, self.y - self.height/2,
+			self.x + self.width/2, self.y - self.height/2,
+			self.x + self.width/2, self.y + self.height/2,
+			self.x - self.width/2, self.y + self.height/2)
 	end
 
 	return self
 end
 
+return Player
