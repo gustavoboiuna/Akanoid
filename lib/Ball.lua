@@ -31,6 +31,8 @@ function Ball.new()
 	function self.place()
 		self.x = love.graphics.getWidth() / 2
 		self.y = love.graphics.getHeight() * 2/3
+    direction.y = -1
+    direction.x = 0
 	end
 
 	function self.update(dt)

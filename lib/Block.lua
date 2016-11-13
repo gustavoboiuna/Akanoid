@@ -14,6 +14,7 @@ function Block.new(xPos, yPos, col)
 	self.y = yPos
 	self.width = 95
 	self.height = 15
+  self.remove = false
 
 	-- Private methods
 	local function setColor()

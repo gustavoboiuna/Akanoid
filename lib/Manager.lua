@@ -36,15 +36,20 @@ function Manager.new()
 
 		ball.checkCollision(player)
 
-		for i, block in ipairs(blocks) do
-			if ball.checkCollision(block) then
-				table.remove(blocks, i)
-				score = score + 50
-			end
-		end
+    for i, block in ipairs(blocks) do
+      if ball.checkCollision(block) then
+        block.remove = true
+        score = score + 50
+      end
+    end
+   
+    for i, block in ipairs(blocks) do
+      if(block.remove == true) then
+        table.remove(blocks, i)
+      end
+    end
 
 		if ball.y >= love.graphics.getHeight() then self.load() end
-	
 	end
 
 	function self.draw()
