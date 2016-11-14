@@ -30,8 +30,8 @@ function Ball.new()
 	function self.place()
 		self.x = love.graphics.getWidth() / 2
 		self.y = love.graphics.getHeight() * 2/3
-    direction.y = -1
-    direction.x = 0
+		direction.y = -1
+		direction.x = 0
 	end
 
 	function self.update(dt)
@@ -56,7 +56,7 @@ function Ball.new()
 
 	function self.checkCollision(object)
 		-- Return true if a collision has occurred between self and object.
-		if  (self.x + radius) > (object.x - object.width/2) and 
+		if (self.x + radius) > (object.x - object.width/2) and 
 			(self.x - radius) < (object.x + object.width/2) and
 			(self.y + radius) > (object.y - object.height/2) and
 			(self.y - radius) < (object.y + object.height/2) then
@@ -66,8 +66,6 @@ function Ball.new()
 
 		return false
 	end
-
-	
 
 	return self
 end

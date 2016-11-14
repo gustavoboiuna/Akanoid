@@ -6,7 +6,7 @@ function SpecialBlock.new(xPos, yPos, limitX, limitY)
 
 	-- Private member variables
 	local color = {255, 255, 255}
-  local moveIncrement = 500
+	local moveIncrement = 500
   
 	-- Public member variables
 	self.x = xPos
@@ -14,57 +14,48 @@ function SpecialBlock.new(xPos, yPos, limitX, limitY)
 	self.width = 95
 	self.height = 15
   
-  self.iniX = xPos + self.width/2
-  self.iniY = yPos
-  self.limitX = limitX - self.width/2
-  self.limitY = limitY
+	self.iniX = xPos + self.width/2
+	self.iniY = yPos
+	self.limitX = limitX - self.width/2
+	self.limitY = limitY
   
 	-- Public methods
-  -- trabalho-07 - Co-rotina
+	-- trabalho-07 - Co-rotina
 	function move()
-    phase = 0
+		phase = 0
     
-    while true do
-      if (phase == 0) then 
-        while (self.x < self.limitX) do coroutine.yield('right') end
-        phase = 1
-        self.width, self.height = self.height, self.width
-      elseif (phase == 1) then
-        while (self.y < self.limitY) do coroutine.yield('down') end
-        phase = 2
-        self.width, self.height = self.height, self.width
-      elseif (phase == 2) then
-        while (self.x > self.iniX) do coroutine.yield('left') end
-        phase = 3
-        self.width, self.height = self.height, self.width
-      else
-        while (self.y > self.iniY) do coroutine.yield('up') end
-        phase = 0
-        self.width, self.height = self.height, self.width
-      end
-    end
+		while true do
+			if (phase == 0) then 
+				while (self.x < self.limitX) do coroutine.yield('right') end
+				phase = 1
+				self.width, self.height = self.height, self.width
+			elseif (phase == 1) then
+				while (self.y < self.limitY) do coroutine.yield('down') end
+				phase = 2
+				self.width, self.height = self.height, self.width
+			elseif (phase == 2) then
+				while (self.x > self.iniX) do coroutine.yield('left') end
+				phase = 3
+				self.width, self.height = self.height, self.width
+			else
+				while (self.y > self.iniY) do coroutine.yield('up') end
+				phase = 0
+				self.width, self.height = self.height, self.width
+			end
+		end
 	end
   
-  local moveCo = coroutine.wrap(move)
-  function self.update(dt)
-    moveDir = moveCo()
+	local moveCo = coroutine.wrap(move)
+  
+	function self.update(dt)
+		moveDir = moveCo()
     
-    if(moveDir == 'left') then
-      self.x = self.x - moveIncrement * dt
-    end
-    
-    if(moveDir == 'right') then
-      self.x = self.x + moveIncrement * dt
-    end
-    
-    if(moveDir == 'down') then
-      self.y = self.y + moveIncrement * dt
-    end
-    
-    if(moveDir == 'up') then
-      self.y = self.y - moveIncrement * dt
-    end
-  end
+		if (moveDir == 'left') then	self.x = self.x - moveIncrement * dt    
+		elseif (moveDir == 'right') then self.x = self.x + moveIncrement * dt    
+		elseif (moveDir == 'down') then self.y = self.y + moveIncrement * dt
+		elseif (moveDir == 'up') then self.y = self.y - moveIncrement * dt
+		end
+	end
   
 	function self.draw()
 		-- Render the Block object.
